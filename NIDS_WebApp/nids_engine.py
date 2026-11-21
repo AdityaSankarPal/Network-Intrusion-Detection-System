@@ -1,10 +1,3 @@
-"""
-================================================================================
-NIDS CORE ML INFERENCE ENGINE (nids_engine.py)
-Production pipeline wrapper for Network Intrusion Detection
-================================================================================
-"""
-
 import os
 import joblib
 import numpy as np
