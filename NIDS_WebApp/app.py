@@ -1,10 +1,3 @@
-"""
-================================================================================
-NIDS — AI-POWERED NETWORK INTRUSION DETECTION SYSTEM
-Minimalist Sapphire Blue Glassmorphic Interface
-================================================================================
-"""
-
 import time
 import os
 import textwrap
@@ -16,9 +9,9 @@ import plotly.express as px
 import plotly.graph_objects as go
 from nids_engine import NIDSEngine
 
-# ------------------------------------------------------------------------------
+
 # 1. PAGE SETUP
-# ------------------------------------------------------------------------------
+
 st.set_page_config(
     page_title="NIDS — AI Network Defense Console",
     page_icon="🌐",
@@ -26,9 +19,9 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
-# ------------------------------------------------------------------------------
+
 # 2. SAPPHIRE / MIDNIGHT BLUE DESIGN SYSTEM (CUSTOM CSS)
-# ------------------------------------------------------------------------------
+
 st.markdown("""
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
@@ -212,9 +205,9 @@ html, body, [class*="css"], .stApp {
 </style>
 """, unsafe_allow_html=True)
 
-# ------------------------------------------------------------------------------
+
 # 3. BACKEND ENGINE INITIALIZATION
-# ------------------------------------------------------------------------------
+
 @st.cache_resource
 def get_engine():
     try:
@@ -224,9 +217,9 @@ def get_engine():
 
 engine = get_engine()
 
-# ------------------------------------------------------------------------------
+
 # 4. SESSION STATE NAVIGATION (TOP PILL NAVBAR)
-# ------------------------------------------------------------------------------
+
 if 'current_tab' not in st.session_state:
     st.session_state.current_tab = "Home"
 
@@ -238,23 +231,23 @@ with nav_col1:
 with nav_col2:
     c1, c2, c3, c4, c5 = st.columns(5)
     with c1:
-        if st.button("⌂ Home", use_container_width=True):
+        if st.button("Home", use_container_width=True):
             st.session_state.current_tab = "Home"
             st.rerun()
     with c2:
-        if st.button("⚡ Live Stream", use_container_width=True):
+        if st.button("Live Stream", use_container_width=True):
             st.session_state.current_tab = "Live Stream"
             st.rerun()
     with c3:
-        if st.button("📊 Batch Scanner", use_container_width=True):
+        if st.button("Batch Scanner", use_container_width=True):
             st.session_state.current_tab = "Batch Scanner"
             st.rerun()
     with c4:
-        if st.button("🔍 Deep Forensics", use_container_width=True):
+        if st.button("Deep Forensics", use_container_width=True):
             st.session_state.current_tab = "Deep Forensics"
             st.rerun()
     with c5:
-        if st.button("🛡️ Specs & Telemetry", use_container_width=True):
+        if st.button("Specs & Telemetry", use_container_width=True):
             st.session_state.current_tab = "Specs & Telemetry"
             st.rerun()
 
@@ -263,9 +256,9 @@ with nav_col3:
 
 st.markdown("<div style='margin-bottom: 1.5rem;'></div>", unsafe_allow_html=True)
 
-# ==============================================================================
+
 # TAB 1: HOME (LANDING HERO + NETWORK GRAPHIC)
-# ==============================================================================
+
 if st.session_state.current_tab == "Home":
     hero_left, hero_right = st.columns([1.1, 0.9], gap="large")
 
@@ -316,9 +309,9 @@ if st.session_state.current_tab == "Home":
     with card3:
         st.markdown("""<div class="step-card"><div class="step-number">03</div><div class="step-title">Protect</div><div class="step-desc">Execute immediate automated firewall rules—quarantine suspicious hosts and drop zero-day attack payloads.</div></div>""", unsafe_allow_html=True)
 
-# ==============================================================================
+
 # TAB 2: LIVE STREAM (REAL-TIME SOCKET SIMULATOR)
-# ==============================================================================
+
 elif st.session_state.current_tab == "Live Stream":
     st.markdown('<div class="eyebrow-tag">LIVE TELEMETRY MONITOR</div>', unsafe_allow_html=True)
     st.markdown("<h2 style='font-size: 2.2rem; font-weight: 800; color: #ffffff; margin-top: -10px;'>Real-Time Packet Radar</h2>", unsafe_allow_html=True)
@@ -335,7 +328,7 @@ elif st.session_state.current_tab == "Live Stream":
         with ctrl3:
             st.write("")
             st.write("")
-            start_btn = st.button("🔴 Start Live Capture", use_container_width=True)
+            start_btn = st.button("Start Live Capture", use_container_width=True)
 
         if start_btn:
             status_box = st.empty()
@@ -394,7 +387,7 @@ elif st.session_state.current_tab == "Live Stream":
                     if res['prediction'] == 'ANOMALY':
                         st.markdown(f"""<div class="terminal-box" style="border-left-color: #ef4444; color: #fca5a5;">⚠️ <b>[ALERT] Threat Intercepted at {t_stamp}</b> | Protocol: <b>{pkt['protocol_type'].upper()} ({pkt['service']})</b> | Risk: <b>{res['anomaly_score']:.1f}%</b> | Action: <code>{res['action_required']}</code></div>""", unsafe_allow_html=True)
                     else:
-                        st.markdown(f"""<div class="terminal-box">✅ <b>[NORMAL] Packet #{i+1} at {t_stamp}</b> | {pkt['protocol_type'].upper()} • {pkt['service']} | Status: Verified Safe</div>""", unsafe_allow_html=True)
+                        st.markdown(f"""<div class="terminal-box"><b>[NORMAL] Packet #{i+1} at {t_stamp}</b> | {pkt['protocol_type'].upper()} • {pkt['service']} | Status: Verified Safe</div>""", unsafe_allow_html=True)
 
                 fig_stream = go.Figure()
                 fig_stream.add_trace(go.Scatter(
@@ -421,9 +414,9 @@ elif st.session_state.current_tab == "Live Stream":
                 table_box.dataframe(pd.DataFrame(live_records[:8]), use_container_width=True)
                 time.sleep(1.0 / stream_speed)
 
-# ==============================================================================
+
 # TAB 3: BATCH SCANNER (CSV AUDITOR)
-# ==============================================================================
+
 elif st.session_state.current_tab == "Batch Scanner":
     st.markdown('<div class="eyebrow-tag">BULK FILE AUDITING</div>', unsafe_allow_html=True)
     st.markdown("<h2 style='font-size: 2.2rem; font-weight: 800; color: #ffffff; margin-top: -10px;'>Log Traffic Health Check</h2>", unsafe_allow_html=True)
@@ -501,9 +494,9 @@ elif st.session_state.current_tab == "Batch Scanner":
                 csv_file = results.to_csv(index=False).encode('utf-8')
                 st.download_button("Download Security Incident Report (CSV)", data=csv_file, file_name="nids_threat_summary.csv", mime="text/csv")
 
-# ==============================================================================
+
 # TAB 4: DEEP FORENSICS (SINGLE PACKET DIAGNOSTIC)
-# ==============================================================================
+
 elif st.session_state.current_tab == "Deep Forensics":
     st.markdown('<div class="eyebrow-tag">MANUAL PACKET FORENSICS</div>', unsafe_allow_html=True)
     st.markdown("<h2 style='font-size: 2.2rem; font-weight: 800; color: #ffffff; margin-top: -10px;'>Single Connection Diagnostic</h2>", unsafe_allow_html=True)
@@ -573,9 +566,8 @@ elif st.session_state.current_tab == "Deep Forensics":
             with r_col2:
                 st.markdown(f"""<div class="step-card" style="height: 220px; display: flex; flex-direction: column; justify-content: center;"><div class="step-number">VERDICT</div><div style="font-size: 1.8rem; font-weight: 800; color: {'#f87171' if res['prediction'] == 'ANOMALY' else '#38bdf8'}; margin-bottom: 0.5rem;">{res['prediction']}</div><div style="font-size: 0.9rem; color: #cbd5e1; line-height: 1.6;">• <b>Severity:</b> {res['threat_level']}<br>• <b>Policy Action:</b> {res['action_required']}<br>• <b>Confidence Score:</b> {res['anomaly_score']:.2f}%</div></div>""", unsafe_allow_html=True)
 
-# ==============================================================================
+
 # TAB 5: SPECS & TELEMETRY
-# ==============================================================================
 elif st.session_state.current_tab == "Specs & Telemetry":
     st.markdown('<div class="eyebrow-tag">AI CORE TELEMETRY</div>', unsafe_allow_html=True)
     st.markdown("<h2 style='font-size: 2.2rem; font-weight: 800; color: #ffffff; margin-top: -10px;'>System Architecture & Topology</h2>", unsafe_allow_html=True)
